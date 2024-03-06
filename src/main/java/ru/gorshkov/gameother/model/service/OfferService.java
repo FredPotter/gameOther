@@ -29,5 +29,5 @@ public class OfferService {
         offerRepository.deleteById(id);
     }
     //TODO: Add methods to get offers by user id
-    
+
 }
