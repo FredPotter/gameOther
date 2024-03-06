@@ -43,7 +43,7 @@ public class Offer {
     @Column(nullable = false)
     private String obtainMethod;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "vipStatus_id")
     private VipStatus vipStatus;
 }
