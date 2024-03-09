@@ -2,6 +2,7 @@ package ru.gorshkov.gameother.model.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.gorshkov.gameother.model.entity.User;
 import ru.gorshkov.gameother.model.repository.UserRepository;
 
@@ -15,16 +16,22 @@ public class UserService {
     public List<User> getUsers() {
         return userRepository.findAll();
     }
+
     public Long size() {
         return userRepository.count();
     }
+
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("User not found for id :: " + id));
     }
+
+    @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
+    @Transactional
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
