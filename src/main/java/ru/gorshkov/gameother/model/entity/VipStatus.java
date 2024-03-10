@@ -3,7 +3,6 @@ package ru.gorshkov.gameother.model.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 
