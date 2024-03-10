@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface OfferRepository extends JpaRepository<Offer, Long>{
-    public List<Offer> findOffersByGameAndCategoryOrderByPricePerLot(Game game, Category category);
-    public List<Offer> findOffersByGame(Game game);
+    List<Offer> findOffersByGameAndCategoryOrderByPricePerLot(Game game, Category category);
+    List<Offer> findOffersByGame(Game game);
     //Наверное не пригодиться TODO: Потом возможно убрать
-    public int countAllByGameAndCategory(Game game, Category category);
+    int countAllByGameAndCategory(Game game, Category category);
 }

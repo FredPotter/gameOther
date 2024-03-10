@@ -20,5 +20,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
             "ON u.id = r.Seller.id " +
             "WHERE u.accountStatus = 1 " +
             "GROUP BY u.id")
-    public List<SellerDto> getSellers();
+    List<SellerDto> getSellers();
 }
