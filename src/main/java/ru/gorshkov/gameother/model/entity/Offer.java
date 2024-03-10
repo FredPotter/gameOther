@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 @Data
 public class Offer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "offer_seq")
+    @SequenceGenerator(name="offer_seq", allocationSize=1)
     private Long id;
 
     @Column(nullable = false)
@@ -43,7 +44,7 @@ public class Offer {
     @Column(nullable = false)
     private String obtainMethod;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "vipStatus_id")
+    @OneToOne
+    @JoinColumn(name = "vip_status_id")
     private VipStatus vipStatus;
 }

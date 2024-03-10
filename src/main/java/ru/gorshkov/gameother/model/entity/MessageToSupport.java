@@ -6,11 +6,12 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="messageToSupport")
+@Table(name="message_to_support")
 @Data
 public class MessageToSupport {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "message_to_support_seq")
+    @SequenceGenerator(name="message_to_support_seq", allocationSize=1)
     private Long id;
 
     @ManyToOne

@@ -8,7 +8,8 @@ import lombok.Data;
 @Data
 public class Country {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
+    @SequenceGenerator(name="country_seq", allocationSize=1)
     private Long id;
 
     @Column(nullable = false)

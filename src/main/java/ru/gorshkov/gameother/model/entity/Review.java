@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Data
 public class Review {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_seq")
+    @SequenceGenerator(name="review_seq", allocationSize=1)
     private Long id;
 
     @ManyToOne

@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq")
+    @SequenceGenerator(name="users_seq", allocationSize=1)
     private Long id;
 
     @Column(nullable = false)
@@ -38,7 +39,7 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime registrationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
 

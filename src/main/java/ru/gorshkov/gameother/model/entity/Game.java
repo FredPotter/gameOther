@@ -8,7 +8,8 @@ import lombok.Data;
 @Data
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "game_seq")
+    @SequenceGenerator(name="game_seq", allocationSize=1)
     private Long id;
 
     @Column(nullable = false)
