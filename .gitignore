@@ -1,5 +1,6 @@
 HELP.md
 target/
+logs/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -14,9 +15,13 @@ src/main/resources/ddl_jpa_creation.sql
 .settings
 .springBeans
 .sts4-cache
+LICENSE
+mvnw
+mvnw.cmd
 
 ### IntelliJ IDEA ###
 .idea
+.mvn
 *.iws
 *.iml
 *.ipr
