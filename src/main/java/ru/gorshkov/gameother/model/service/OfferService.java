@@ -35,6 +35,9 @@ public class OfferService {
     public void deleteOfferById(Long id) {
         offerRepository.deleteById(id);
     }
+
+    //<-- Expanded functionality -->
+    
     //TODO: Add methods to get offers by user id
 
 }

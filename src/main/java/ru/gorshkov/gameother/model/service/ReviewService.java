@@ -3,6 +3,7 @@ package ru.gorshkov.gameother.model.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.gorshkov.gameother.model.DTO.SellerDto;
 import ru.gorshkov.gameother.model.entity.Review;
 import ru.gorshkov.gameother.model.repository.ReviewRepository;
 
@@ -34,5 +35,9 @@ public class ReviewService {
     @Transactional
     public void deleteReviewById(Long id) {
         reviewRepository.deleteById(id);
+    }
+
+    public List<SellerDto> getSellers() {
+        return reviewRepository.getSellers();
     }
 }
