@@ -16,7 +16,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
     @Value("${jwt.secret}")
-    private String SECRET_KEY;
+    private String secret;
 
     @Value("${jwt.expiringTime}")
     private long expiringTime; // 24 hours
@@ -62,6 +62,8 @@ public class JwtService {
     }
 
     private SecretKey getSigningKey() {
-        return new SecretKeySpec(Base64.getDecoder().decode(SECRET_KEY), Jwts.SIG.HS256.getId());
+        return new SecretKeySpec(
+                Base64.getUrlEncoder().encode(secret.getBytes()),
+                "HmacSHA256");
     }
 }

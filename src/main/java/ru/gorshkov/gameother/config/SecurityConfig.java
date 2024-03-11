@@ -24,7 +24,11 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requestMatchers ->
-                        requestMatchers.requestMatchers("/gameother/auth/**").permitAll().anyRequest().authenticated())
+                        requestMatchers.requestMatchers("/gameother/auth/**",
+                                "/auth/register", "/auth/authenticate")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

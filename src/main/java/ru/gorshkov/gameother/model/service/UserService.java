@@ -31,6 +31,11 @@ public class UserService {
                 new RuntimeException("User not found for login :: " + login));
     }
 
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() ->
+                new RuntimeException("User not found for username :: " + username));
+    }
+
     @Transactional
     public User saveUser(User user) {
         return userRepository.save(user);
