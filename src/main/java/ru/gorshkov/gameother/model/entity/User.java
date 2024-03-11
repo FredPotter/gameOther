@@ -61,6 +61,9 @@ public class User implements UserDetails {
     @Column
     private LocalDateTime lastLoginDate;
 
+    @Column
+    private Integer code;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(userStatus.name()));

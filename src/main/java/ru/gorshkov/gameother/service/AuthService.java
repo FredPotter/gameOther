@@ -26,19 +26,36 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request, int verifyCode) {
+        var user = userService.getUserByLogin(request.getLogin());
+        if (user.getCode() == verifyCode) {
+            user.setAccountStatus(AccountStatus.ACTIVE);
+            user.setLastLoginDate(LocalDateTime.now());
+            userService.saveUser(user);
+            var jwtToken = jwtService.generateToken(user.getId(), user);
+            return new AuthenticationResponse(jwtToken);
+        } else {
+            return new AuthenticationResponse("invalid code");
+        }
+    }
+
+    public boolean preRegister(RegisterRequest request, int verifyCode) {
         var user = User.builder()
                 .userStatus(UserStatus.USER)
                 .login(request.getLogin())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .username(request.getUsername())
-                .accountStatus(AccountStatus.ACTIVE)
+                .accountStatus(AccountStatus.INACTIVE)
                 .registrationDate(LocalDateTime.now())
                 .country(countryService.getCountryByName(request.getCountryName()))
+                .code(verifyCode)
                 .build();
-        userService.saveUser(user);
-        var jwtToken = jwtService.generateToken(user.getId(), user);
-        return new AuthenticationResponse(jwtToken);
+        if (userService.findUserByLoginOrUsername(request.getLogin(), request.getUsername())) {
+            return false;
+        } else {
+            userService.saveUser(user);
+            return true;
+        }
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {

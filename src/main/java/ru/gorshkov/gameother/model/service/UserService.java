@@ -35,6 +35,9 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(() ->
                 new RuntimeException("User not found for username :: " + username));
     }
+public boolean findUserByLoginOrUsername(String login, String username) {
+    return userRepository.findByLogin(login).isPresent() || userRepository.findByUsername(username).isPresent();
+}
 
     @Transactional
     public User saveUser(User user) {
