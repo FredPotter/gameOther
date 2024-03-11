@@ -1,4 +1,4 @@
-package ru.gorshkov.gameother.model.DTO;
+package ru.gorshkov.gameother.DTO.entitiesDto;
 
 import ru.gorshkov.gameother.enums.AccountStatus;
 import ru.gorshkov.gameother.enums.UserStatus;
