@@ -6,6 +6,7 @@ logs/
 !**/src/test/**/target/
 src/main/resources/application.yml
 src/main/resources/ddl_jpa_creation.sql
+src/main/resources/security.txt
 
 ### STS ###
 .apt_generated
