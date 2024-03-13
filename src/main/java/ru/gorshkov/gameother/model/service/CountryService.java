@@ -26,6 +26,11 @@ public class CountryService {
                 new RuntimeException("Country not found for id :: " + id));
     }
 
+    public Country getCountryByName(String name) {
+        return countryRepository.findCountryByName(name).orElseThrow(() ->
+                new RuntimeException("Country not found for name :: " + name));
+    }
+
     @Transactional
     public Country saveCountry(Country country) {
         return countryRepository.save(country);

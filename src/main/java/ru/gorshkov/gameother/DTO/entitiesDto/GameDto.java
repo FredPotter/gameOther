@@ -1,4 +1,4 @@
-package ru.gorshkov.gameother.model.DTO;
+package ru.gorshkov.gameother.DTO.entitiesDto;
 
 public record GameDto(
         Long id,

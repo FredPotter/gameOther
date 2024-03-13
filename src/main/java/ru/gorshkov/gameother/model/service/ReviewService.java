@@ -3,7 +3,7 @@ package ru.gorshkov.gameother.model.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.gorshkov.gameother.model.DTO.SellerDto;
+import ru.gorshkov.gameother.DTO.entitiesDto.SellerDto;
 import ru.gorshkov.gameother.model.entity.Review;
 import ru.gorshkov.gameother.model.repository.ReviewRepository;
 

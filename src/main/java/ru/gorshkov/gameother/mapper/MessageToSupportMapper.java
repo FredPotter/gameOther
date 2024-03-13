@@ -2,7 +2,7 @@ package ru.gorshkov.gameother.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import ru.gorshkov.gameother.model.DTO.MessageToSupportDto;
+import ru.gorshkov.gameother.DTO.entitiesDto.MessageToSupportDto;
 import ru.gorshkov.gameother.model.entity.MessageToSupport;
 
 @Mapper
