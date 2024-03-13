@@ -3,14 +3,12 @@ package ru.gorshkov.gameother.controller.auth;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import ru.gorshkov.gameother.DTO.requests.AuthenticationRequest;
 import ru.gorshkov.gameother.DTO.requests.RegisterRequest;
 import ru.gorshkov.gameother.DTO.responses.AuthenticationResponse;
 import ru.gorshkov.gameother.gateway.sms.AbstractSmsSender;
 import ru.gorshkov.gameother.service.AuthService;
-import ru.gorshkov.gameother.util.PropertyReader;
 import ru.gorshkov.gameother.util.TelUtil;
 
 @RestController
