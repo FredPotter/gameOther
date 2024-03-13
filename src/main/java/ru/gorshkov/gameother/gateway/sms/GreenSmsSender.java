@@ -1,62 +1,49 @@
 package ru.gorshkov.gameother.gateway.sms;
 
-import io.jsonwebtoken.Jwts;
 import lombok.Builder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
-import java.util.Date;
+import org.springframework.http.*;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import ru.gorshkov.gameother.DTO.requests.GreenSmsGetTokenRequest;
+import ru.gorshkov.gameother.DTO.responses.GreenSmsGetTokenResponse;
+import ru.gorshkov.gameother.util.PropertyReader;
 import java.util.Map;
 
-@Service
-public class GreenSmsSender extends AbstractSmsSender{
+public class GreenSmsSender extends AbstractSmsSender {
+    private PropertyReader propertyReader = new PropertyReader("security.txt");
 
-    @Autowired
-    private RestTemplate restTemplate;
-
+    private final GreenSmsGetTokenRequest greenSmsGetTokenRequest
+            = new GreenSmsGetTokenRequest(
+            propertyReader.getProperty("greensms.username"),
+            propertyReader.getProperty("greensms.password"),
+            Long.parseLong(propertyReader.getProperty("greensms.expiringTime")) +
+                    System.currentTimeMillis()
+    );
 
     @Override
     public String sendSms(String phoneNumber, String message) {
-        //System.out.println(user + " " + password);
         String url = "https://api3.greensms.ru/sms/send";
-        System.out.println("222222222222222222222222222222222222222");
-        HttpHeaders headers = new HttpHeaders();
-        System.out.println("3333333333333333333333333333333333333333333333");
-        headers.set("Authorization", "Bearer " + token); //TODO: Caching token
-        System.out.println("444444444444444444444444444444444444444444444");
-        SmsRequest smsRequest = SmsRequest.builder().
-                to(phoneNumber).txt(message).build();
-        System.out.println("5555555555555555555555555555555555555555555555");
-        HttpEntity<SmsRequest> request = new HttpEntity<>(smsRequest, headers);
-        System.out.println("6666666666666666666666666666666666666666666666666");
-        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, request, String.class);
-        System.out.println("777777777777777777777777777777777777777777777777");
-        return response.getBody();
+
+        WebClient client = WebClient.builder()
+                .baseUrl(url)
+                .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + getToken().getAccess_token())
+                .build();
+        return client.post()
+                .body(BodyInserters.fromValue(Map.of("to", phoneNumber, "txt", message))
+                ).retrieve().bodyToMono(String.class).block();
     }
 
-//    private String getToken() {
-//        return Jwts.builder()
-//                .claims(Map.of("user", ))
-//                .issuedAt(new Date(System.currentTimeMillis()))
-//                .expiration(new Date(System.currentTimeMillis() + expiringTime * 10L))
-//                .issuer("https://othergame.ru")
-//                .signWith(getSigningKey(), Jwts.SIG.HS256)
-//                .compact();
-//    }
-//    private SecretKey getSigningKey() {
-//        return new SecretKeySpec(
-//                Base64.getEncoder().encode(password.getBytes()),
-//                "HmacSHA256");
-//    }
+    public GreenSmsGetTokenResponse getToken() {
+        WebClient client = WebClient.builder()
+                .baseUrl("https://api3.greensms.ru/account/token")
+                .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .build();
+        return client.post()
+                .body(BodyInserters.fromValue(greenSmsGetTokenRequest))
+                .retrieve()
+                .bodyToMono(GreenSmsGetTokenResponse.class)
+                .block();
+    }
 
     @Builder
     static class SmsRequest {

@@ -26,11 +26,13 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationResponse register(RegisterRequest request, int verifyCode) {
+    public AuthenticationResponse register(RegisterRequest request, Integer verifyCode) {
         var user = userService.getUserByLogin(request.getLogin());
-        if (user.getCode() == verifyCode) {
+        if (verifyCode.equals(user.getCode())) {
             user.setAccountStatus(AccountStatus.ACTIVE);
             user.setLastLoginDate(LocalDateTime.now());
+            user.setBalance(0L);
+            user.setCode(null);
             userService.saveUser(user);
             var jwtToken = jwtService.generateToken(user.getId(), user);
             return new AuthenticationResponse(jwtToken);

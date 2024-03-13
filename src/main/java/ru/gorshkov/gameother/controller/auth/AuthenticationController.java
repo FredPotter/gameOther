@@ -4,15 +4,13 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.gorshkov.gameother.DTO.requests.AuthenticationRequest;
 import ru.gorshkov.gameother.DTO.requests.RegisterRequest;
 import ru.gorshkov.gameother.DTO.responses.AuthenticationResponse;
 import ru.gorshkov.gameother.gateway.sms.AbstractSmsSender;
 import ru.gorshkov.gameother.service.AuthService;
+import ru.gorshkov.gameother.util.PropertyReader;
 import ru.gorshkov.gameother.util.TelUtil;
 
 @RestController
@@ -22,12 +20,12 @@ import ru.gorshkov.gameother.util.TelUtil;
 public class AuthenticationController {
 
     private final AuthService authService;
-
     @PostMapping("/register1")
     public ResponseEntity<String> register1(
             @RequestBody RegisterRequest request){
         AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
+        System.out.println(verifyCode);
         if (authService.preRegister(request, verifyCode)) {
             smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
             return ResponseEntity.ok("OK");
@@ -37,7 +35,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
-            @RequestBody RegisterRequest request, int code){
+            @RequestBody RegisterRequest request,@RequestParam Integer code){
         var response = authService.register(request, code);
         if ("invalid code".equals(response.getToken())) {
             return ResponseEntity.status(400).body(response);

@@ -6,7 +6,6 @@ import com.twilio.type.PhoneNumber;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-@Service
 public class TwilioSmsSender extends AbstractSmsSender{
     @Value("${twilio.account_sid}")
     private String ACCOUNT_SID;
@@ -20,5 +19,10 @@ public class TwilioSmsSender extends AbstractSmsSender{
          return Message.creator(new PhoneNumber(phoneNumber),
              new PhoneNumber("+15109076591"), message
         ).create().getBody();
+    }
+
+    @Override
+    public Object getToken() {
+        return AUTH_TOKEN;
     }
 }
