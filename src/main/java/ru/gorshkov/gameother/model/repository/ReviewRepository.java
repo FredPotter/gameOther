@@ -3,9 +3,8 @@ package ru.gorshkov.gameother.model.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import ru.gorshkov.gameother.model.DTO.SellerDto;
+import ru.gorshkov.gameother.DTO.entitiesDto.SellerDto;
 import ru.gorshkov.gameother.model.entity.Review;
-import ru.gorshkov.gameother.model.entity.User;
 
 import java.util.List;
 
