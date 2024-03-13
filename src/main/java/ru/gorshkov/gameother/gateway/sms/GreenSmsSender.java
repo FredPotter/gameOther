@@ -10,7 +10,7 @@ import ru.gorshkov.gameother.util.PropertyReader;
 import java.util.Map;
 
 public class GreenSmsSender extends AbstractSmsSender {
-    private PropertyReader propertyReader = new PropertyReader("security.txt");
+    private final PropertyReader propertyReader = new PropertyReader("security.txt");
 
     private final GreenSmsGetTokenRequest greenSmsGetTokenRequest
             = new GreenSmsGetTokenRequest(
@@ -33,7 +33,7 @@ public class GreenSmsSender extends AbstractSmsSender {
                 ).retrieve().bodyToMono(String.class).block();
     }
 
-    public GreenSmsGetTokenResponse getToken() {
+    protected GreenSmsGetTokenResponse getToken() {
         WebClient client = WebClient.builder()
                 .baseUrl("https://api3.greensms.ru/account/token")
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

@@ -3,14 +3,17 @@ package ru.gorshkov.gameother.gateway.sms;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
-import org.springframework.beans.factory.annotation.Value;
+import ru.gorshkov.gameother.util.PropertyReader;
 
 public class TwilioSmsSender extends AbstractSmsSender{
-    @Value("${twilio.account_sid}")
-    private String ACCOUNT_SID;
+    private final String ACCOUNT_SID;
+    private final String AUTH_TOKEN;
 
-    @Value("${twilio.auth_token}")
-    private String AUTH_TOKEN;
+    public TwilioSmsSender() {
+        PropertyReader propertyReader = new PropertyReader("security.txt");
+        ACCOUNT_SID = propertyReader.getProperty("twilio.account_sid");
+        AUTH_TOKEN = propertyReader.getProperty("twilio.auth_token");
+    }
 
     @Override
     public String sendSms(String phoneNumber, String message) {
@@ -21,7 +24,7 @@ public class TwilioSmsSender extends AbstractSmsSender{
     }
 
     @Override
-    public Object getToken() {
+    protected Object getToken() {
         return AUTH_TOKEN;
     }
 }
