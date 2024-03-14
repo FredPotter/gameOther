@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(requestMatchers ->
                         requestMatchers.requestMatchers("/gameother/auth/**",
-                                "/auth/register", "/auth/authenticate", "/auth/register1")
+                                "/auth/register", "/auth/authenticate", "/auth/pre-register")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

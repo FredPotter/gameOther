@@ -21,12 +21,11 @@ public class AuthenticationController {
     @PostMapping("/pre-register")
     public ResponseEntity<String> preRegister(
             @RequestBody RegisterRequest request){
-        System.out.println(request);
-        AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
+        //AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
         System.out.println(verifyCode);
         if (authService.preRegister(request, verifyCode)) {
-            smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
+            //smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode)); //TODO: MADE ASYNC
             System.out.println("SMS sent: " + verifyCode);
             return ResponseEntity.ok("OK");
         }

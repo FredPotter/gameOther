@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gorshkov.gameother.DTO.entitiesDto.VipStatusDto;
 import ru.gorshkov.gameother.DTO.requests.rest.CreateOfferRequest;
+import ru.gorshkov.gameother.model.entity.Category;
+import ru.gorshkov.gameother.model.entity.Game;
 import ru.gorshkov.gameother.model.entity.Offer;
 import ru.gorshkov.gameother.model.entity.VipStatus;
 import ru.gorshkov.gameother.model.service.*;
@@ -41,6 +43,7 @@ public class OfferController {
                 .name(request.getName())
                 .game(game)
                 .category(category)
+                .creationDate(LocalDateTime.now())
                 .pricePerLot(request.getPricePerLot())
                 .quantityGoodsInLot(request.getQuantityGoodsInLot())
                 .description(request.getDescription())
