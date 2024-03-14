@@ -18,14 +18,15 @@ import ru.gorshkov.gameother.util.TelUtil;
 public class AuthenticationController {
 
     private final AuthService authService;
-    @PostMapping("/register1")
-    public ResponseEntity<String> register1(
+    @PostMapping("/pre-register")
+    public ResponseEntity<String> preRegister(
             @RequestBody RegisterRequest request){
-        AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
+        //AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
         System.out.println(verifyCode);
         if (authService.preRegister(request, verifyCode)) {
-            smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
+        //    smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
+            System.out.println("SMS sent: " + verifyCode);
             return ResponseEntity.ok("OK");
         }
         return ResponseEntity.status(400).body("User already exists");
@@ -44,7 +45,6 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> authenticate(
             @RequestBody AuthenticationRequest request){
-        log.debug(request.toString());
         return ResponseEntity.ok(authService.authenticate(request));
     }
 

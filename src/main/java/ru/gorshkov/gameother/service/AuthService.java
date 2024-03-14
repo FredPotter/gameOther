@@ -61,7 +61,6 @@ public class AuthService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword())
         );
