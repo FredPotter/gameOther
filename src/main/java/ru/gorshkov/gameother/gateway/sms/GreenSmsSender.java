@@ -4,8 +4,8 @@ import lombok.Builder;
 import org.springframework.http.*;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
-import ru.gorshkov.gameother.DTO.requests.GreenSmsGetTokenRequest;
-import ru.gorshkov.gameother.DTO.responses.GreenSmsGetTokenResponse;
+import ru.gorshkov.gameother.DTO.requests.auth.GreenSmsGetTokenRequest;
+import ru.gorshkov.gameother.DTO.responses.auth.GreenSmsGetTokenResponse;
 import ru.gorshkov.gameother.util.PropertyReader;
 import java.util.Map;
 

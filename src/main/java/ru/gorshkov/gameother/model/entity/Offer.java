@@ -1,13 +1,19 @@
 package ru.gorshkov.gameother.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="offer")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "offer_seq")
@@ -17,7 +23,7 @@ public class Offer {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -36,7 +42,7 @@ public class Offer {
     private Long pricePerLot;
 
     @Column(nullable = false)
-    private Long QuantityGoodsInLot;
+    private Long quantityGoodsInLot;
 
     @Column(nullable = false)
     private String description;

@@ -1,4 +1,4 @@
-package ru.gorshkov.gameother.DTO.responses;
+package ru.gorshkov.gameother.DTO.responses.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

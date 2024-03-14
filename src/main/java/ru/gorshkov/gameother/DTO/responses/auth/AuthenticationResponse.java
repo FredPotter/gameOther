@@ -1,4 +1,4 @@
-package ru.gorshkov.gameother.DTO.requests;
+package ru.gorshkov.gameother.DTO.responses.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GreenSmsGetTokenRequest {
-    private String user;
-    private String pass;
-    private Long expired;
+public class AuthenticationResponse {
+    private String token;
 }

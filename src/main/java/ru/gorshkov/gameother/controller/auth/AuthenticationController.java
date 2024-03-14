@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.gorshkov.gameother.DTO.requests.AuthenticationRequest;
-import ru.gorshkov.gameother.DTO.requests.RegisterRequest;
-import ru.gorshkov.gameother.DTO.responses.AuthenticationResponse;
+import ru.gorshkov.gameother.DTO.requests.auth.AuthenticationRequest;
+import ru.gorshkov.gameother.DTO.requests.auth.RegisterRequest;
+import ru.gorshkov.gameother.DTO.responses.auth.AuthenticationResponse;
 import ru.gorshkov.gameother.gateway.sms.AbstractSmsSender;
 import ru.gorshkov.gameother.service.AuthService;
 import ru.gorshkov.gameother.util.TelUtil;
@@ -21,11 +21,12 @@ public class AuthenticationController {
     @PostMapping("/pre-register")
     public ResponseEntity<String> preRegister(
             @RequestBody RegisterRequest request){
-        //AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
+        System.out.println(request);
+        AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
         System.out.println(verifyCode);
         if (authService.preRegister(request, verifyCode)) {
-        //    smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
+            smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode));
             System.out.println("SMS sent: " + verifyCode);
             return ResponseEntity.ok("OK");
         }

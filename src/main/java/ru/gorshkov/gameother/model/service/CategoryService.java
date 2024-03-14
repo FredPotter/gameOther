@@ -27,6 +27,11 @@ public class CategoryService {
                 new RuntimeException("Category not found for id :: " + id));
     }
 
+    public Category getCategoryByName(String name) {
+        return categoryRepository.findByName(name).orElseThrow(() ->
+                new RuntimeException("Category not found for name :: " + name));
+    }
+
     @Transactional
     public Category saveCategory(Category category) {
         return categoryRepository.save(category);

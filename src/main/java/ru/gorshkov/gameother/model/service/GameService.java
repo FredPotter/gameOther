@@ -25,6 +25,10 @@ public class GameService {
         return gameRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Game not found for id :: " + id));
     }
+    public Game getGameByName(String name) {
+        return gameRepository.findByName(name).orElseThrow(() ->
+                new RuntimeException("Game not found for name :: " + name));
+    }
 
     @Transactional
     public Game saveGame(Game game) {
@@ -35,4 +39,5 @@ public class GameService {
     public void deleteGameById(Long id) {
         gameRepository.deleteById(id);
     }
+
 }
