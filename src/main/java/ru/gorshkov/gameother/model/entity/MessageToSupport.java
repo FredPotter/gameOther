@@ -26,4 +26,7 @@ public class MessageToSupport {
 
     @Column(nullable = false)
     private LocalDateTime messageDate;
+
+    @Column
+    private Boolean isDeleted;
 }

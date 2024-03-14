@@ -30,4 +30,7 @@ public class Message {
 
     @Column(nullable = false)
     private LocalDateTime messageDate;
+
+    @Column
+    private Boolean isDeleted;
 }
