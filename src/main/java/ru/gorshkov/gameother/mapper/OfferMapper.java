@@ -1,6 +1,7 @@
 package ru.gorshkov.gameother.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.gorshkov.gameother.DTO.entitiesDto.OfferDto;
 import ru.gorshkov.gameother.model.entity.Offer;
@@ -8,6 +9,7 @@ import ru.gorshkov.gameother.model.entity.Offer;
 @Mapper
 public interface OfferMapper {
     OfferMapper INSTANCE = Mappers.getMapper(OfferMapper.class);
+    @Mapping(target = "quantityGoodsInLot", source = "quantityGoodsInLot")
     OfferDto toDto(Offer offer);
     Offer toEntity(OfferDto offerDto);
 }

@@ -1,21 +1,21 @@
 package ru.gorshkov.gameother.DTO.entitiesDto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import ru.gorshkov.gameother.enums.AccountStatus;
 import ru.gorshkov.gameother.enums.UserStatus;
 import java.time.LocalDateTime;
 
 public record UserDto(
          Long id,
-         UserStatus userStatus,
+         @JsonIgnore UserStatus userStatus,
          String login,
          String email,
-         String password,
+         @JsonIgnore String password,
          String username,
-         Long balance,
+         @JsonIgnore Long balance,
          AccountStatus accountStatus,
-         LocalDateTime registrationDate,
+         @JsonIgnore LocalDateTime registrationDate,
          CountryDto country,
          String pathToAvatar,
          LocalDateTime lastLoginDate
-) {
-}
+) { }

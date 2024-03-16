@@ -10,7 +10,7 @@ public record OfferDto(
         LocalDateTime creationDate,
         UserDto seller,
         Long pricePerLot,
-        Long QuantityGoodsInLot,
+        Long quantityGoodsInLot,
         String description,
         String obtainMethod,
         VipStatusDto vipStatus

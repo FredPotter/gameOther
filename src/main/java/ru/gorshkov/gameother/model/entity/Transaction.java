@@ -1,13 +1,19 @@
 package ru.gorshkov.gameother.model.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.gorshkov.gameother.enums.BuyerStatus;
 import ru.gorshkov.gameother.enums.SellerStatus;
 
 @Entity
 @Table(name="transaction")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "transaction_seq")
@@ -27,7 +33,7 @@ public class Transaction {
     private Offer offer;
 
     @Column(nullable = false)
-    private Long QuantityGoods;
+    private Long quantityGoods;
 
     @Column(nullable = false)
     private Long pricePerLot;

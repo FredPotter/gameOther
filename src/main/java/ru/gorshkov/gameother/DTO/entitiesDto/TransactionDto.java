@@ -8,7 +8,7 @@ public record TransactionDto(
         UserDto buyer,
         UserDto seller,
         OfferDto offer,
-        Long QuantityGoods,
+        Long quantityGoods,
         Long pricePerLot,
         BuyerStatus buyerStatus,
         SellerStatus sellerStatus

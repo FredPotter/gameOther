@@ -1,6 +1,7 @@
 package ru.gorshkov.gameother.mapper;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.gorshkov.gameother.DTO.entitiesDto.UserDto;
 import ru.gorshkov.gameother.model.entity.User;
