@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class BuyOfferRequest {
     private Long offerId;
     private Long quantity;
+    private Long totalPrice;
 }

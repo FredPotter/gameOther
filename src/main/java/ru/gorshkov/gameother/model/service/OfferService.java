@@ -71,10 +71,16 @@ public class OfferService {
     }
 
     @Transactional
-    public List<Offer> findOffersByGameAndCategoryOrderByPricePerLot(String gameName, String categoryName) {
-        var game = gameService.getGameByName(gameName);
+    public List<Offer> findOffersByGameAndCategoryOrderByPricePerLot(Long gameId, String categoryName) {
+        var game = gameService.getGameById(gameId);
         var category = categoryService.getCategoryByName(categoryName);
         return offerRepository.findOffersByGameAndCategoryOrderByPricePerLot(game, category);
+    }
+
+    @Transactional
+    public List<Offer> findOffersByGame(Long gameId) {
+        var game = gameService.getGameById(gameId);
+        return offerRepository.findOffersByGame(game);
     }
     
     //TODO: Add methods to get offers by user id

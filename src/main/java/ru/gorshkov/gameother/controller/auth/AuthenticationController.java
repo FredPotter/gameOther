@@ -15,6 +15,7 @@ import ru.gorshkov.gameother.util.TelUtil;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin(origins = "http://localhost:3000/")
 public class AuthenticationController {
 
     private final AuthService authService;
