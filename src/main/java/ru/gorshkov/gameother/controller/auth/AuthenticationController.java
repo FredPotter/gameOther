@@ -8,6 +8,7 @@ import ru.gorshkov.gameother.DTO.requests.auth.AuthenticationRequest;
 import ru.gorshkov.gameother.DTO.requests.auth.RegisterRequest;
 import ru.gorshkov.gameother.DTO.responses.auth.AuthenticationResponse;
 import ru.gorshkov.gameother.DTO.responses.auth.PreRegisterResponse;
+import ru.gorshkov.gameother.gateway.sms.AbstractSmsSender;
 import ru.gorshkov.gameother.service.AuthService;
 import ru.gorshkov.gameother.util.TelUtil;
 
@@ -22,11 +23,11 @@ public class AuthenticationController {
     @PostMapping("/pre-register")
     public ResponseEntity<PreRegisterResponse> preRegister(
             @RequestBody RegisterRequest request){
-        //AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
+        AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
         System.out.println(verifyCode);
         if (authService.preRegister(request, verifyCode)) {
-            //smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode)); //TODO: MADE ASYNC
+            smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode)); //TODO: MADE ASYNC
             System.out.println("SMS sent: " + verifyCode);
             return ResponseEntity.ok(new PreRegisterResponse(true, "OK"));
         }
