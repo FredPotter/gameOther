@@ -42,6 +42,9 @@ public class Offer {
     private Long pricePerLot;
 
     @Column(nullable = false)
+    private Long quantity;
+
+    @Column(nullable = false)
     private Long quantityGoodsInLot;
 
     @Column(nullable = false)

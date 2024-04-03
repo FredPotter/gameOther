@@ -53,6 +53,11 @@ public class TransactionService {
         var buyer = userService.getUserByUsername(username);
         var offer = offerService.getOfferById(request.getOfferId());
         var seller = userService.getUserById(offer.getSeller().getId());
+        offer.setQuantity(offer.getQuantity() - request.getQuantity());
+        if (offer.getQuantity() < 0) {
+            throw new RuntimeException("Not enough goods");
+        }
+        offerService.saveOffer(offer);
         return transactionRepository.save(Transaction.builder()
                 .buyer(buyer)
                 .seller(seller)

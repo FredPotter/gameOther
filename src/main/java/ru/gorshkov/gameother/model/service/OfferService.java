@@ -1,7 +1,6 @@
 package ru.gorshkov.gameother.model.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gorshkov.gameother.DTO.requests.rest.CreateOfferRequest;
@@ -32,6 +31,7 @@ public class OfferService {
                     VipStatus.builder()
                             .expirationDateVipStatus(LocalDateTime.now().plusDays(request.getVipStatusDays()))
                             .build());
+            seller.setBalance(seller.getBalance()-(request.getVipStatusDays()*80));
         }
         saveOffer(Offer.builder()
                 .seller(seller)
@@ -40,6 +40,7 @@ public class OfferService {
                 .category(category)
                 .creationDate(LocalDateTime.now())
                 .pricePerLot(request.getPricePerLot())
+                .quantity(request.getQuantity())
                 .quantityGoodsInLot(request.getQuantityGoodsInLot())
                 .description(request.getDescription())
                 .obtainMethod(request.getObtainMethod())

@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.gorshkov.gameother.model.entity.User;
-
-import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -18,6 +15,7 @@ public class CreateOfferRequest {
     private String gameName;
     private String categoryName;
     private Long pricePerLot;
+    private Long quantity;
     private Long quantityGoodsInLot;
     private String description;
     private String obtainMethod;

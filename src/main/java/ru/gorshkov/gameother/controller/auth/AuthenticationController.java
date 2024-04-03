@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.gorshkov.gameother.DTO.requests.auth.AuthenticationRequest;
 import ru.gorshkov.gameother.DTO.requests.auth.RegisterRequest;
 import ru.gorshkov.gameother.DTO.responses.auth.AuthenticationResponse;
-import ru.gorshkov.gameother.gateway.sms.AbstractSmsSender;
+import ru.gorshkov.gameother.DTO.responses.auth.PreRegisterResponse;
 import ru.gorshkov.gameother.service.AuthService;
 import ru.gorshkov.gameother.util.TelUtil;
 
@@ -20,7 +20,7 @@ public class AuthenticationController {
 
     private final AuthService authService;
     @PostMapping("/pre-register")
-    public ResponseEntity<String> preRegister(
+    public ResponseEntity<PreRegisterResponse> preRegister(
             @RequestBody RegisterRequest request){
         //AbstractSmsSender smsSender = TelUtil.getSmsSender(request.getTelephoneRegion());
         int verifyCode = TelUtil.generateCode();
@@ -28,9 +28,9 @@ public class AuthenticationController {
         if (authService.preRegister(request, verifyCode)) {
             //smsSender.sendSms(request.getLogin(), String.valueOf(verifyCode)); //TODO: MADE ASYNC
             System.out.println("SMS sent: " + verifyCode);
-            return ResponseEntity.ok("OK");
+            return ResponseEntity.ok(new PreRegisterResponse(true, "OK"));
         }
-        return ResponseEntity.status(400).body("User already exists");
+        return ResponseEntity.ok(new PreRegisterResponse(false, "User already exists"));
     }
 
     @PostMapping("/register")
