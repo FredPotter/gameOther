@@ -31,7 +31,7 @@ public class AuthenticationController {
             System.out.println("SMS sent: " + verifyCode);
             return ResponseEntity.ok(new PreRegisterResponse(true, "OK"));
         }
-        return ResponseEntity.ok(new PreRegisterResponse(false, "User already exists"));
+        return ResponseEntity.ok(new PreRegisterResponse(false, "User already exists or data is not valid"));
     }
 
     @PostMapping("/register")
