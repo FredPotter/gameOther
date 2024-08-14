@@ -2217,20 +2217,20 @@ https://www.postgresql.org/docs/
 
 
 
-[ref1]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.003.png
-[ref2]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.004.png
-[ref3]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.005.png
-[ref4]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.006.png
-[ref5]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.007.png
-[ref6]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.008.png
-[ref7]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.009.png
-[ref8]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.010.png
-[ref9]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.011.png
-[ref10]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.012.png
-[ref11]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.013.png
-[ref12]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.014.png
-[ref13]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.015.png
-[ref14]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.016.png
-[ref15]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.017.png
-[ref16]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.022.png
-[ref17]: Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.023.png
+[ref1]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.003.png
+[ref2]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.004.png
+[ref3]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.005.png
+[ref4]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.006.png
+[ref5]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.007.png
+[ref6]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.008.png
+[ref7]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.009.png
+[ref8]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.010.png
+[ref9]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.011.png
+[ref10]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.012.png
+[ref11]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.013.png
+[ref12]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.014.png
+[ref13]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.015.png
+[ref14]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.016.png
+[ref15]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.017.png
+[ref16]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.022.png
+[ref17]: документация/Aspose.Words.0080ec19-6ded-4ad9-9a41-e4c51c4e3a9f.023.png
